@@ -1,0 +1,82 @@
+﻿@model IDictionary<AskAndTell.Models.Question, AskAndTell.Models.Answer>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tell Answer</h2>
+@if (Model.Keys.ElementAtOrDefault(0) != null)
+{
+    <h3> @Model.Keys.ElementAtOrDefault(0).Title </h3>
+    foreach (var tag in Model.Keys.ElementAtOrDefault(0).Tags)
+    {
+            <span><a href="../../Question/ByTag/@tag.Id"><em>#@tag.TagName  </em></a></span>
+    }
+
+    <p>
+        Votes: @Model.Keys.ElementAtOrDefault(0).Votes <a href="../UpVote/@Model.Keys.ElementAtOrDefault(0).Id"> UpVote </a> ||
+        <a href="../DownVote/@Model.Keys.ElementAtOrDefault(0).Id">DownVote </a>
+    </p>
+    var user = ViewBag.User; 
+
+    <h5>By @ViewBag.User.UserName with @ViewBag.User.Reputation Repuation points.</h5>
+
+    <h3>All Comments </h3>
+    foreach (var comment in Model.Keys.ElementAtOrDefault(0).Comments)
+    {
+        <p>@comment.Body</p>
+    }
+
+    <h2>Add Comments </h2>
+    using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            <hr />
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBox("commentBody")
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add Comment" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <h2>All Answers</h2>
+    foreach (var answer in Model.Keys.ElementAtOrDefault(0).Answers)
+    {
+        <a href="../../Comment/Index/@answer.Id"><p>@answer.Body</p></a>
+    }
+    <h3>Add Answer</h3>
+    using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            <hr />
+            @*<div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(m => m.ElementAtOrDefault(0).Body)
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Values.ElementAtOrDefault(0).Body)
+                </div>
+            </div>
+
+            <div class="form-group" hidden>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Keys.ElementAtOrDefault(0).Id)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+}

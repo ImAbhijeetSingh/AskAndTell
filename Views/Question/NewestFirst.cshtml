@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "NewestFirst";
+}
+
+<h2>Questions</h2>
+
+<h4>You Can Sort By</h4>
+<a href="NewestFirst">Newest First (Selected)</a>
+<br />
+<a href="MostAnsweredFirst">Most Answered First</a>
+
+@foreach (var question in Model)
+{
+    <a href="../Answer/Index/@question.Id"><h2>@question.Title</h2></a>
+    foreach (var tag in question.Tags)
+    {
+        <span><a href="../Question/ByTag/@tag.Id"><em>#@tag.TagName  </em></a></span>
+    }
+}

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<AskAndTell.Models.Question>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Questions</h2>
+<h4>You Can Sort By</h4>
+<a href="../Question/NewestFirst">Newest First</a>
+<br />
+<a href="../Question/MostAnsweredFirst">Most Answered First</a>
+
+
+@foreach (var question in Model)
+{
+    var ques = question;
+    <a href="../Answer/Index/@question.Id"><h2>@question.Title</h2></a>
+    foreach (var tag in question.Tags)
+    {
+        <span><a href="../Question/ByTag/@tag.Id"><em>#@tag.TagName  </em></a></span>
+    }
+
+
+}
+

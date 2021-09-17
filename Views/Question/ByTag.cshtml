@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AskAndTell.Models.Question>
+@{
+    ViewBag.Title = "ByTag";
+}
+
+<h2>Questions By #@ViewBag.TagName</h2>
+
+@foreach (var question in Model)
+{
+    <h3>@question.Title</h3>
+    foreach (var tag in question.Tags)
+    {
+        <span><a href="../ByTag/@tag.Id"><em>#@tag.TagName  </em></a></span>
+    }
+}
