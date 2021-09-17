@@ -22,10 +22,10 @@ namespace AskAndTell.Migrations
             //  to avoid creating duplicate seed data.
 
 
-            ApplicationUser Admin = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b7", Email = "admin@at.com", UserName = "Admin", PasswordHash = "AGc0BzANkeFEhJNtBNUH82vhUAqsPsKu5QpwZzQD6JpIGuXGYV+sApOqAmNLJQc0PA==" };
-            ApplicationUser User1 = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b1", Email = "user1@at.com", UserName = "User1", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", Reputation=130 };
-            ApplicationUser User2 = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b2", Email = "user2@at.com", UserName = "User2", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", Reputation = 120 };
-            ApplicationUser User3 = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b3", Email = "user3@at.com", UserName = "User3", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", Reputation = 90 };
+            ApplicationUser Admin = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b0", Email = "admin@at.com", UserName = "admin@at.com", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", SecurityStamp = "e0544ac2-fd43-4346-93ab-da6edc6db442", };
+            ApplicationUser User1 = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b1", Email = "user1@at.com", UserName = "user1@at.com", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", SecurityStamp="e0544ac2-fd43-4346-93ab-da6edc6db442", Reputation =130 };
+            ApplicationUser User2 = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b2", Email = "user2@at.com", UserName = "user2@at.com", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", SecurityStamp = "e0544ac2-fd43-4346-93ab-da6edc6db442", Reputation = 120 };
+            ApplicationUser User3 = new ApplicationUser { Id = "b9c2deb4-f060-4f72-b30f-3136200199b3", Email = "user3@at.com", UserName = "user3@at.com", PasswordHash = "APS8TsYIDvM996DTkPgJDXI498paj4jSSUaGQEjwvYugT68xazctzQjnhT/f4jy6NA==", SecurityStamp = "e0544ac2-fd43-4346-93ab-da6edc6db442", Reputation = 90 };
 
 
             context.Users.AddOrUpdate(u => u.Email, User1);
@@ -36,20 +36,30 @@ namespace AskAndTell.Migrations
 
             Tag tag1 = new Tag { TagName = "HTML" };
             Tag tag2 = new Tag { TagName = "CSS" };
-            Tag tag3 = new Tag { TagName = "JS" };
+            Tag tag3 = new Tag { TagName = "JavaScript" };
+            Tag tag4 = new Tag { TagName = "ReactJS" };
+            Tag tag5 = new Tag { TagName = "C#" };
+            Tag tag6 = new Tag { TagName = "SQL" };
+            Tag tag7 = new Tag { TagName = "PHP" };
+            Tag tag8 = new Tag { TagName = "LINQ" };
 
             context.Tags.AddOrUpdate(t => t.TagName, tag1);
             context.Tags.AddOrUpdate(t => t.TagName, tag2);
             context.Tags.AddOrUpdate(t => t.TagName, tag3);
+            context.Tags.AddOrUpdate(t => t.TagName, tag4);
+            context.Tags.AddOrUpdate(t => t.TagName, tag5);
+            context.Tags.AddOrUpdate(t => t.TagName, tag6);
+            context.Tags.AddOrUpdate(t => t.TagName, tag7);
+            context.Tags.AddOrUpdate(t => t.TagName, tag8);
             context.SaveChanges();
 
-            Question question1 = new Question { Id = 1, Title = "title1", Body = "body1", DateTime = DateTime.Today.AddDays(-7), Votes = 7, UserId = User1.Id };
-            Question question2 = new Question { Id = 2, Title = "title2", Body = "body2", DateTime = DateTime.Today.AddDays(-6), Votes = 8, UserId = User2.Id };
-            Question question3 = new Question { Id = 3, Title = "title3", Body = "body3", DateTime = DateTime.Today.AddDays(-5), Votes = 10, UserId = User3.Id };
-            Question question4 = new Question { Id = 4, Title = "title4", Body = "body4", DateTime = DateTime.Today.AddDays(-4), Votes = 12, UserId = User2.Id };
-            Question question5 = new Question { Id = 5, Title = "title5", Body = "body5", DateTime = DateTime.Today.AddDays(-3), Votes = 15, UserId = User3.Id };
-            Question question6 = new Question { Id = 6, Title = "title6", Body = "body6", DateTime = DateTime.Today.AddDays(-2), Votes = 18, UserId = User3.Id };
-            Question question7 = new Question { Id = 7, Title = "title7", Body = "body7", DateTime = DateTime.Today.AddDays(-1), Votes = 20, UserId = User1.Id };
+            Question question1 = new Question { Id = 1, Title = "title1", Body = "body1", DateTime = DateTime.Today.AddDays(-7), Votes = 7, UserId = User1.Id, Tags = {tag1, tag2, tag3 } };
+            Question question2 = new Question { Id = 2, Title = "title2", Body = "body2", DateTime = DateTime.Today.AddDays(-6), Votes = 8, UserId = User2.Id, Tags = { tag1, tag2, tag4 } };
+            Question question3 = new Question { Id = 3, Title = "title3", Body = "body3", DateTime = DateTime.Today.AddDays(-5), Votes = 10, UserId = User3.Id, Tags = { tag4, tag5, tag6 } };
+            Question question4 = new Question { Id = 4, Title = "title4", Body = "body4", DateTime = DateTime.Today.AddDays(-4), Votes = 12, UserId = User2.Id, Tags = { tag1, tag2, tag7 } };
+            Question question5 = new Question { Id = 5, Title = "title5", Body = "body5", DateTime = DateTime.Today.AddDays(-3), Votes = 15, UserId = User3.Id, Tags = { tag1, tag2, tag8 } };
+            Question question6 = new Question { Id = 6, Title = "title6", Body = "body6", DateTime = DateTime.Today.AddDays(-2), Votes = 18, UserId = User3.Id, Tags = { tag1, tag4, tag3 } };
+            Question question7 = new Question { Id = 7, Title = "title7", Body = "body7", DateTime = DateTime.Today.AddDays(-1), Votes = 20, UserId = User1.Id, Tags = { tag1, tag6, tag3 } };
 
             context.Questions.AddOrUpdate(q => q.Id, question1);
             context.Questions.AddOrUpdate(q => q.Id, question2);
